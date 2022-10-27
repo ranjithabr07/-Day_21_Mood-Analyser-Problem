@@ -67,6 +67,39 @@ namespace TestProject1
             string message = moodAnalyser.AnalyseMood();
             Assert.AreEqual("SAD", message);
         }
+        // <summary>
+        /// tc 3.1 Given NULL Mood Should Throw MoodAnalysisException
+        /// </summary>
+        [Test]
+        public void GivenMessage_WhenNull_USingCustomException_ShouldReturnNullMood()
+        {
+            moodAnalyser = new MoodAnalyser();
+            try
+            {
+                string message = moodAnalyser.AnalyseMood();
+            }
+            catch (MoodAnalyserException exception)
+            {
+                Assert.AreEqual(MoodAnalyserException.ExceptionType.NULL_MOOD, exception.exceptionType);
+            }
+
+        }
+        // <summary>
+        /// tc 3.2 Given Empty Mood Should Throw MoodAnalysisException indicating Empty Mood
+        /// </summary>
+        [Test]
+        public void GivenMessage_WhenEmpty_USingCustomException_ShouldReturnNullMood()
+        {
+            moodAnalyser = new MoodAnalyser("");
+            try
+            {
+                string message = moodAnalyser.AnalyseMood();
+            }
+            catch (MoodAnalyserException exception)
+            {
+                Assert.AreEqual(MoodAnalyserException.ExceptionType.EMPTY_MOOD, exception.exceptionType);
+            }
+        }
 
     }
 
